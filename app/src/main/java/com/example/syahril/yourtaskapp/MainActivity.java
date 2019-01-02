@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
     private void setupView(){
         root=findViewById(R.id.root);
         signup=findViewById(R.id.signup_txt);
-
+        signup.setVisibility(View.GONE);
         email = findViewById(R.id.email_login);
         pass = findViewById(R.id.password_login);
         btnLogin = findViewById(R.id.Login_btn);

@@ -2,9 +2,13 @@ package com.example.syahril.yourtaskapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +27,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -113,6 +118,12 @@ public class HomeActivity extends BaseActivity {
 
         root = findViewById(R.id.root);
         fabBtn = findViewById(R.id.fab_btn);
+        if(mUser.getUid().equalsIgnoreCase(getString(R.string.uid))){
+            fabBtn.show();
+
+        }else{
+            fabBtn.hide();
+        }
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +163,7 @@ public class HomeActivity extends BaseActivity {
                                 holder.setTitle(model.getTitle());
                                 holder.setNote(model.getNote());
                                 holder.setStaff(model.getStaff());
-
+                                holder.setImageStatus(2);
                                 holder.updateCheckBox(model, post_key,2);
 
 
@@ -217,6 +228,7 @@ public class HomeActivity extends BaseActivity {
                         holder.setStaff(model.getStaff());
                         holder.seDate(convertDateBasedOnDay(model.getDate()));
                         holder.updateCheckBox(model, post_key,model.getStatus());
+                        holder.setImageStatus(model.getStatus());
 
 
                         holder.myview.setOnClickListener(new View.OnClickListener() {
@@ -290,7 +302,7 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         DatabaseReference mDatabase;
         View myview;
@@ -338,6 +350,28 @@ public class HomeActivity extends BaseActivity {
         public void seDate(String date) {
             TextView mDate = myview.findViewById(R.id.date);
             mDate.setText(date);
+        }
+
+        public void setImageStatus(int status) {
+            ImageView imgStatus = myview.findViewById(R.id.img_status);
+
+            if(status==0){
+                ImageViewCompat.setImageTintList(imgStatus,
+                        ColorStateList.valueOf(
+                                ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
+                imgStatus.setImageResource(R.drawable.new_box);
+
+            }else if(status==1){
+                ImageViewCompat.setImageTintList(imgStatus,
+                        ColorStateList.valueOf(
+                                ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess)));
+                imgStatus.setImageResource(R.drawable.check_circle);
+            }else{
+                ImageViewCompat.setImageTintList(imgStatus,
+                        ColorStateList.valueOf(
+                                ContextCompat.getColor(getApplicationContext(), R.color.colorPending)));
+                imgStatus.setImageResource(R.drawable.account_clock);
+            }
         }
 
 
