@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\b97cd53dd284db3e9b187d895b26afa3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\58e9f702bf05ed75b0a73328f81f8826\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c01a7a463ec7742039d42f1d0d16dd9\AndroidManifest.xml:2:1-11:12
@@ -61,25 +61,25 @@ MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\nur.diyana\.gradle\
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.1.aar\88861b8a6781c4e08e7a01ced8597619\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\e163f0b9e5189098917f20d12ebf12a1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-database-collection:16.0.1] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\firebase-database-collection-16.0.1.aar\6aa03e978e126337446846a59c155d5f\AndroidManifest.xml:2:1-7:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
+INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
 	package
 		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:1-35:12
 		INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:5:5-27:19
+ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:5:5-33:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\b97cd53dd284db3e9b187d895b26afa3\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\design-28.0.0.aar\b97cd53dd284db3e9b187d895b26afa3\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\nur.diyana\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\1c01a7a463ec7742039d42f1d0d16dd9\AndroidManifest.xml:9:5-20
@@ -160,16 +160,20 @@ activity#com.example.syahril.yourtaskapp.HomeActivity
 ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:20:9-59
 	android:name
 		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:20:19-47
-service#com.example.syahril.yourtaskapp.MyFirebaseInstanceIDService
-ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:21:9-26:19
+service#com.example.syahril.yourtaskapp.fcm.SubFirebaseInstanceIdService
+ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:22:9-26:19
 	android:name
-		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:22:13-56
+		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:22:18-66
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
 ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:23:13-25:29
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:24:17-79
+ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:24:17-80
 	android:name
 		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:24:25-77
+service#com.example.syahril.yourtaskapp.fcm.MyFirebaseInstanceIDService
+ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:27:9-32:19
+	android:name
+		ADDED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml:28:13-60
 uses-sdk
 INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\nur.diyana\Desktop\study\New folder (2)\helpdesk_error\app\src\main\AndroidManifest.xml

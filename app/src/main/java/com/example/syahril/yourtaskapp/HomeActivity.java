@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,9 +37,14 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.syahril.yourtaskapp.Model.Data;
+import com.example.syahril.yourtaskapp.Model.Message;
+import com.example.syahril.yourtaskapp.adapter.CheckBoxListener;
+import com.example.syahril.yourtaskapp.adapter.ClickListener;
+import com.example.syahril.yourtaskapp.adapter.RecyclerViewAdapter;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.database.ObservableSnapshotArray;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,13 +53,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class HomeActivity extends BaseActivity {
 
@@ -61,7 +75,7 @@ public class HomeActivity extends BaseActivity {
 
     //firebase
 
-    private DatabaseReference mDatabase;
+    public DatabaseReference mDatabase;
     private DatabaseReference mDatabaseSpinner;
     private FirebaseAuth mAuth;
 
@@ -74,8 +88,6 @@ public class HomeActivity extends BaseActivity {
     private EditText noteupdate;
     private Spinner spinnerList;
     private Spinner spinnerupdate;
-    private Button btndelete;
-    private Button btnupdate;
     private LinearLayout root;
 
     //variable
@@ -84,9 +96,14 @@ public class HomeActivity extends BaseActivity {
     private String note;
     private String staff;
     private String post_key;
+    private String parentNode;
 
     private List<String> spinnerListString = new ArrayList<>();
     private ArrayAdapter<String> spinnerListAdapter;
+    private List<Data> myObject = new ArrayList<>();
+
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,14 +115,17 @@ public class HomeActivity extends BaseActivity {
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser mUser = mAuth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
         String uId = mUser.getUid();
+        //get all user uid
+
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(uId);
         mDatabase.keepSynced(true);
 
         //firebase spinner data
         mDatabaseSpinner = FirebaseDatabase.getInstance().getReference().child("staff");
-
+        initFCM();
         //Recycler..
 
         recyclerView = findViewById(R.id.recycler);
@@ -118,10 +138,10 @@ public class HomeActivity extends BaseActivity {
 
         root = findViewById(R.id.root);
         fabBtn = findViewById(R.id.fab_btn);
-        if(mUser.getUid().equalsIgnoreCase(getString(R.string.uid))){
+        if (mUser.getUid().equalsIgnoreCase(getString(R.string.uid))) {
             fabBtn.show();
 
-        }else{
+        } else {
             fabBtn.hide();
         }
         fabBtn.setOnClickListener(new View.OnClickListener() {
@@ -131,132 +151,232 @@ public class HomeActivity extends BaseActivity {
                 setupDialogSave();
             }
         });
+//        setupRecyclerViewList(null, true, 0);
 
-        setupRecyclerViewList(true, 0);
+        if (mUser.getUid().equalsIgnoreCase(getString(R.string.uid))) {
+
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote");
+            operationByAdmin();
+
+
+        } else {
+            //technician
+            mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(getString(R.string.uid));
+            operationByTechnician();
+            //boleh tgok apa admin add je
+//            belongsToTechnician();
+
+        }
+
+
+    }
+
+    private void operationByTechnician(){
+        showProgressDialog();
+        new Thread(new Runnable() {
+            public void run() {
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myObject = new ArrayList<>();
+                        if (dataSnapshot.getValue() != null) {
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                                Map<String, Object> message = (Map<String, Object>) dataSnapshot1.getValue();
+
+
+
+                                    Data data = new Data();
+                                    data.setParentNode(dataSnapshot1.getKey());
+                                    data.setId((String) message.get("id"));
+                                    data.setDate((String) message.get("date"));
+                                    data.setNote((String) message.get("note"));
+                                    data.setStaff((String) message.get("staff"));
+                                    data.setTitle((String) message.get("title"));
+                                    int status = 0;
+                                    if (message.get("status") != null) {
+                                        long statusLong = (long) message.get("status");
+                                        status = (int) statusLong;
+                                    }
+                                    data.setStatus(status);
+                                    myObject.add(data);
+
+
+                                final Handler handlers = new Handler();
+                                handlers.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (myObject != null && myObject.size() > 0) {
+                                            if (recyclerViewAdapter != null) {
+                                                recyclerViewAdapter.update(myObject);
+                                                recyclerViewAdapter.notifyDataSetChanged();
+                                            } else {
+                                                recyclerViewAdapter = new RecyclerViewAdapter(mDatabase, getApplicationContext(), myObject, new ClickListener() {
+                                                    @Override
+                                                    public void btnClick(Data data, int position) {
+                                                        parentNode = data.getParentNode();
+                                                        post_key = data.getId();
+                                                        title = data.getTitle();
+                                                        note = data.getNote();
+                                                        staff = data.getStaff();
+                                                        setupDialogUpdate();
+                                                    }
+                                                }, new CheckBoxListener() {
+                                                    @Override
+                                                    public void clickCheckBox(Data data) {
+                                                        data.setStatus(1);//success
+
+                                                        //fire listener
+                                                        mDatabase.child(data.getParentNode()).child(data.getId()).setValue(data, new DatabaseReference.CompletionListener() {
+                                                            public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                                                System.out.println("Value was set. Error = " + error);
+                                                            }
+                                                        });
+                                                    }
+
+
+
+                                                });
+                                            }
+
+
+                                            recyclerView.setAdapter(recyclerViewAdapter);
+                                        }
+
+                                        dismissProgressDialog();
+                                    }
+                                }, 1000);
+                            }
+                        } else {
+                            dismissProgressDialog();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }).start();
+    }
+
+
+    private void operationByAdmin() {
+        showProgressDialog();
+        new Thread(new Runnable() {
+            public void run() {
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myObject = new ArrayList<>();
+                        if (dataSnapshot.getValue() != null) {
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                                Map<String, Object> message = (Map<String, Object>) dataSnapshot1.getValue();
+
+
+
+                                for (Map.Entry<String, Object> entry : message.entrySet()) {
+                                    Data data = new Data();
+                                    Map<String, Object> messages = (Map<String, Object>) entry.getValue();
+                                    data.setParentNode(dataSnapshot1.getKey());
+                                    data.setId((String) messages.get("id"));
+                                    data.setDate((String) messages.get("date"));
+                                    data.setNote((String) messages.get("note"));
+                                    data.setStaff((String) messages.get("staff"));
+                                    data.setTitle((String) messages.get("title"));
+                                    int status = 0;
+                                    if (messages.get("status") != null) {
+                                        long statusLong = (long) messages.get("status");
+                                        status = (int) statusLong;
+                                    }
+                                    data.setStatus(status);
+                                    myObject.add(data);
+
+                                }
+                                final Handler handlers = new Handler();
+                                handlers.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (myObject != null && myObject.size() > 0) {
+                                            if (recyclerViewAdapter != null) {
+                                                recyclerViewAdapter.update(myObject);
+                                                recyclerViewAdapter.notifyDataSetChanged();
+                                            } else {
+                                                recyclerViewAdapter = new RecyclerViewAdapter(mDatabase, getApplicationContext(), myObject, new ClickListener() {
+                                                    @Override
+                                                    public void btnClick(Data data, int position) {
+                                                        parentNode = data.getParentNode();
+                                                        post_key = data.getId();
+                                                        title = data.getTitle();
+                                                        note = data.getNote();
+                                                        staff = data.getStaff();
+                                                        setupDialogUpdate();
+                                                    }
+                                                }, new CheckBoxListener() {
+                                                    @Override
+                                                    public void clickCheckBox(Data data) {
+                                                        data.setStatus(1);//success
+
+                                                        //fire listener
+                                                        mDatabase.child(data.getParentNode()).child(data.getId()).setValue(data, new DatabaseReference.CompletionListener() {
+                                                            public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                                                System.out.println("Value was set. Error = " + error);
+                                                            }
+                                                        });
+                                                    }
+
+
+
+                                                });
+                                            }
+
+
+                                            recyclerView.setAdapter(recyclerViewAdapter);
+                                        }
+
+                                        dismissProgressDialog();
+                                    }
+                                }, 1000);
+                            }
+                        } else {
+                            dismissProgressDialog();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void initFCM() {
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Log.d("Token", "initFCM: token: " + token);
+        sendRegistrationToServer(token);
+
+    }
+
+    private void sendRegistrationToServer(String token) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("messaging_token")
+                .setValue(token);
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-
-    }
-
-    private void showAllPendingTicket() {
-        //compare today date with ticket date.
-        //if today date is more than ticket date,then set as pending
-        showProgressDialog();
-        FirebaseRecyclerOptions options =
-                new FirebaseRecyclerOptions.Builder<Data>()
-                        .setQuery(mDatabase, Data.class)
-                        .build();
-
-        FirebaseRecyclerAdapter<Data, MyViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull MyViewHolder holder, final int position, @NonNull final Data model) {
-                        String date = convertDateBasedOnDay(model.getDate());
-                        if(!date.equalsIgnoreCase("TODAY")) {
-                            if(model.getStatus()==0){
-                                holder.seDate(date);
-                                post_key = getRef(position).getKey();
-                                holder.setTitle(model.getTitle());
-                                holder.setNote(model.getNote());
-                                holder.setStaff(model.getStaff());
-                                holder.setImageStatus(2);
-                                holder.updateCheckBox(model, post_key,2);
-
-
-                                holder.myview.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-
-                                        title = model.getTitle();
-                                        note = model.getNote();
-                                        staff = model.getStaff();
-                                        setupDialogUpdate();
-                                    }
-                                });
-                            }else{
-                                holder.setCardViewVisibility();
-                            }
-
-                        }else{
-                            holder.setCardViewVisibility();
-                        }
-
-                    }
-
-                    @NonNull
-                    @Override
-                    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_data, viewGroup, false);
-                        MyViewHolder myViewHolder = new MyViewHolder(view);
-                        return myViewHolder;
-                    }
-
-                };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-        dismissProgressDialog();
-    }
-
-    private void setupRecyclerViewList(boolean isMain, final int status) {
-        FirebaseRecyclerOptions options;
-        showProgressDialog();
-        if (isMain == true) {
-            options =
-                    new FirebaseRecyclerOptions.Builder<Data>()
-                            .setQuery(mDatabase, Data.class)
-                            .build();
-        } else {
-            final Query query = mDatabase.orderByChild("status").equalTo(status);
-            options =
-                    new FirebaseRecyclerOptions.Builder<Data>()
-                            .setQuery(query, Data.class)
-                            .build();
-        }
-
-        FirebaseRecyclerAdapter<Data, MyViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Data, MyViewHolder>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull MyViewHolder holder, final int position, @NonNull final Data model) {
-                        post_key = getRef(position).getKey();
-                        holder.setTitle(model.getTitle());
-                        holder.setNote(model.getNote());
-                        holder.setStaff(model.getStaff());
-                        holder.seDate(convertDateBasedOnDay(model.getDate()));
-                        holder.updateCheckBox(model, post_key,model.getStatus());
-                        holder.setImageStatus(model.getStatus());
-
-
-                        holder.myview.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-
-                                title = model.getTitle();
-                                note = model.getNote();
-                                staff = model.getStaff();
-                                setupDialogUpdate();
-                            }
-                        });
-                    }
-
-                    @NonNull
-                    @Override
-                    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_data, viewGroup, false);
-                        MyViewHolder myViewHolder = new MyViewHolder(view);
-                        return myViewHolder;
-                    }
-
-                };
-
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-        dismissProgressDialog();
 
     }
 
@@ -302,105 +422,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        DatabaseReference mDatabase;
-        View myview;
-        FirebaseUser mUser;
-        FirebaseAuth mAuth;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            myview = itemView;
-            mAuth = FirebaseAuth.getInstance();
-            FirebaseUser mUser = mAuth.getCurrentUser();
-            String uId = mUser.getUid();
-            mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(uId);
-            mDatabase.keepSynced(true);
-        }
-
-        public void setCardViewVisibility(){
-//            CardView cardView=myview.findViewById(R.id.card_view);
-//            cardView.setVisibility(View.GONE);
-            LinearLayout linear =myview.findViewById(R.id.linear);
-            linear.setVisibility(View.GONE);
-        }
-
-        public void setTitle(String title) {
-            TextView mTitle = myview.findViewById(R.id.title);
-            mTitle.setText(title);
-        }
-
-
-        public void setNote(String note) {
-            TextView mNote = myview.findViewById(R.id.note);
-            mNote.setText(note);
-
-
-        }
-
-        public void setStaff(String staff) {
-            TextView mStaff = myview.findViewById(R.id.staff);
-            mStaff.setText("Assigned to: " + staff);
-
-
-        }
-
-
-        public void seDate(String date) {
-            TextView mDate = myview.findViewById(R.id.date);
-            mDate.setText(date);
-        }
-
-        public void setImageStatus(int status) {
-            ImageView imgStatus = myview.findViewById(R.id.img_status);
-
-            if(status==0){
-                ImageViewCompat.setImageTintList(imgStatus,
-                        ColorStateList.valueOf(
-                                ContextCompat.getColor(getApplicationContext(), R.color.colorAccent)));
-                imgStatus.setImageResource(R.drawable.new_box);
-
-            }else if(status==1){
-                ImageViewCompat.setImageTintList(imgStatus,
-                        ColorStateList.valueOf(
-                                ContextCompat.getColor(getApplicationContext(), R.color.colorSuccess)));
-                imgStatus.setImageResource(R.drawable.check_circle);
-            }else{
-                ImageViewCompat.setImageTintList(imgStatus,
-                        ColorStateList.valueOf(
-                                ContextCompat.getColor(getApplicationContext(), R.color.colorPending)));
-                imgStatus.setImageResource(R.drawable.account_clock);
-            }
-        }
-
-
-        public void updateCheckBox(final Data model, final String post_key,int status) {
-            CheckBox checkBox = myview.findViewById(R.id.check_box);
-            if(status==0|| status==2){
-                checkBox.setVisibility(View.VISIBLE);
-            }else{
-                checkBox.setVisibility(View.GONE);
-            }
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked == true) {
-                        model.setStatus(1);//success
-                        mDatabase.child(post_key).setValue(model, new DatabaseReference.CompletionListener() {
-                            public void onComplete(DatabaseError error, DatabaseReference ref) {
-                                System.out.println("Value was set. Error = " + error);
-                            }
-                        });
-                    }
-
-
-                }
-            });
-        }
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_overflow, menu);
@@ -413,31 +434,184 @@ public class HomeActivity extends BaseActivity {
 
             case R.id.action_all:
                 //show all ticket
-                setupRecyclerViewList(true, 0);
+
+                if (mUser.getUid().equalsIgnoreCase(getString(R.string.uid))) {
+
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote");
+                    operationByAdmin();
+
+
+                } else {
+                    //technician
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("TaskNote").child(getString(R.string.uid));
+                    operationByTechnician();
+                    //boleh tgok apa admin add je
+//            belongsToTechnician();
+
+                }
                 break;
 
             case R.id.action_new:
                 //show all ticket
-                setupRecyclerViewList(false, 0);
+//                queryMDatabase = mDatabase.orderByChild("status").equalTo(0);
+                operationSorting(0, false);
                 break;
 
             case R.id.action_success:
                 //show all ticket
-                setupRecyclerViewList(false, 1);
+//                queryMDatabase =  mDatabase.orderByChild("status").equalTo(1);
+                operationSorting(1, false);
                 break;
 
             case R.id.action_pending:
                 //show all ticket
 //                setupRecyclerViewList(false,2);
-                showAllPendingTicket();
+                operationSorting(-1, true);
                 break;
 
             case R.id.logout:
                 mAuth.signOut();
                 finish();
+//                testPush();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void operationSorting(final int statusSend, final boolean isPending) {
+        showProgressDialog();
+        new Thread(new Runnable() {
+            public void run() {
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        myObject = new ArrayList<>();
+                        if (dataSnapshot.getValue() != null) {
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                                Map<String, Object> message = (Map<String, Object>) dataSnapshot1.getValue();
+
+                                for (Map.Entry<String, Object> entry : message.entrySet()) {
+                                    Data data = new Data();
+                                    Map<String, Object> messages = (Map<String, Object>) entry.getValue();
+                                    data.setParentNode(dataSnapshot1.getKey());
+                                    data.setId((String) messages.get("id"));
+                                    data.setDate((String) messages.get("date"));
+                                    data.setNote((String) messages.get("note"));
+                                    data.setStaff((String) messages.get("staff"));
+                                    data.setTitle((String) messages.get("title"));
+                                    int status = 0;
+                                    if (messages.get("status") != null) {
+                                        long statusLong = (long) messages.get("status");
+                                        status = (int) statusLong;
+                                    }
+                                    data.setStatus(status);
+                                    if (statusSend == status) {
+                                        myObject.add(data);
+                                    } else if (isPending == true) {
+                                        String date = convertDateBasedOnDay(data.getDate());
+                                        if (!date.equalsIgnoreCase("TODAY")) {
+                                            if (data.getStatus() == 0) {
+                                                data.setStatus(2);
+                                                myObject.add(data);
+                                            }
+                                        }
+                                    }
+
+
+                                }
+                                final Handler handlers = new Handler();
+                                handlers.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (recyclerViewAdapter != null) {
+                                            recyclerViewAdapter.update(myObject);
+                                            recyclerViewAdapter.notifyDataSetChanged();
+                                        } else {
+                                            recyclerViewAdapter = new RecyclerViewAdapter(mDatabase, getApplicationContext(), myObject, new ClickListener() {
+                                                @Override
+                                                public void btnClick(Data data, int position) {
+                                                    parentNode = data.getParentNode();
+                                                    post_key = data.getId();
+                                                    title = data.getTitle();
+                                                    note = data.getNote();
+                                                    staff = data.getStaff();
+                                                    setupDialogUpdate();
+                                                }
+                                            }, new CheckBoxListener() {
+                                                @Override
+                                                public void clickCheckBox(Data data) {
+                                                    data.setStatus(1);//success
+
+                                                    //fire listener
+                                                    mDatabase.child(data.getParentNode()).setValue(data, new DatabaseReference.CompletionListener() {
+                                                        public void onComplete(DatabaseError error, DatabaseReference ref) {
+                                                            System.out.println("Value was set. Error = " + error);
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                            );
+                                        }
+
+
+                                        recyclerView.setAdapter(recyclerViewAdapter);
+                                        dismissProgressDialog();
+                                    }
+                                }, 1000);
+                            }
+                        } else {
+                            dismissProgressDialog();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void testPush() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+
+//        if(!mMessage.getText().toString().equals("")){
+
+        //create the new message
+//            Message message = new Message();
+//            message.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//            message.setMessage("hai");
+//            message.setTimestamp("");
+        ///https://codingwithmitch.com/blog/android-firebase-cloud-messages-cloud-function/
+        /// https://codingwithmitch.com/blog/android-firebase-cloud-messages-cloud-function/
+        //insert the new message
+
+        DatabaseReference databaseRef = reference.child("users");
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                    Log.d("GetDonorId", "DataSnapshot :" + dataSnapshot1.getKey());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//            reference
+//                    .child("messages")
+//                    .child(mUserId)//get naim userId then
+//                    .child(reference.push().getKey())
+//                    .setValue(message);
+//            Toast.makeText(getApplicationContext(), "message sent", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -475,8 +649,9 @@ public class HomeActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                mDatabase.child(post_key).removeValue();
+                mDatabase.child(parentNode).child(post_key).removeValue();
                 showSnackBar(root, "Data Removed!");
+//                recyclerViewAdapter.notifyDataSetChanged();
             }
         });
 
@@ -493,7 +668,7 @@ public class HomeActivity extends BaseActivity {
                 String mDate = DateFormat.getDateInstance().format(new Date());
 
                 Data data = new Data(title, note, staff, mDate, post_key, 0);
-                mDatabase.child(post_key).setValue(data, new DatabaseReference.CompletionListener() {
+                mDatabase.child(parentNode).child(post_key).setValue(data, new DatabaseReference.CompletionListener() {
                     public void onComplete(DatabaseError error, DatabaseReference ref) {
 //                            System.out.println("Value was set. Error = "+error);
                         if (error == null) {
@@ -564,15 +739,15 @@ public class HomeActivity extends BaseActivity {
                     note.setError("Required Field");
                 } else {
                     showProgressDialog();
-                    String id = mDatabase.push().getKey();
+                    String uId = mUser.getUid();
+                    String id = mDatabase.child(uId).push().getKey();
 
                     String date = DateFormat.getDateInstance().format(new Date());
 
                     //NEW STATUS
                     Data data = new Data(mTitle, mNote, mStaff, date, id, 0);
 
-
-                    mDatabase.child(id).setValue(data, new DatabaseReference.CompletionListener() {
+                    mDatabase.child(uId).child(id).setValue(data, new DatabaseReference.CompletionListener() {
                         public void onComplete(DatabaseError error, DatabaseReference ref) {
 //                            System.out.println("Value was set. Error = "+error);
                             if (error == null) {

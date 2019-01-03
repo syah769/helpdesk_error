@@ -14,6 +14,16 @@ public class Data {
     //pending=2;
     private int status;
 
+    public String getParentNode() {
+        return parentNode;
+    }
+
+    public void setParentNode(String parentNode) {
+        this.parentNode = parentNode;
+    }
+
+    private String parentNode;
+
 
     public Data(){
 
