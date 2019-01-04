@@ -9,6 +9,16 @@ public class Data {
     private String staff;
     private String date;
     private String id;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    private String desc;
     //new=0;
     //success=1;
     //pending=2;
@@ -37,13 +47,14 @@ public class Data {
         this.status = status;
     }
 
-    public Data(String title, String note, String staff, String date, String id, int status) {
+    public Data(String title, String note, String staff, String date, String id, int status,String desc) {
         this.title = title;
         this.note = note;
         this.staff = staff;
         this.date = date;
         this.id = id;
         this.status=status;
+        this.desc=desc;
 
     }
 

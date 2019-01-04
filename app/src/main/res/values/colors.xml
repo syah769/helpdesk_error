@@ -6,4 +6,5 @@
     <color name="colorSuccess"> #006400</color>
     <color name="colorNew">#32CD32</color>
     <color name="colorPending">#FF0000</color>
+    <color name="disabled">#DCDCDC</color>
 </resources>

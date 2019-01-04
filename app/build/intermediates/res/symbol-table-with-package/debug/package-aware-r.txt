@@ -645,6 +645,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color disabled
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -1152,6 +1153,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id edit_desc
 id edit_note
 id edit_note_update
 id edit_query
@@ -1311,6 +1313,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tv_body
 id tv_title
+id tx_desc
 id tx_email
 id tx_note
 id tx_password
@@ -1996,6 +1999,7 @@ string data_title
 string data_type
 string default_notification_channel_id
 string default_web_client_id
+string desc
 string direct_message
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior

@@ -6,6 +6,7 @@
     <string name="uid">gi1WxFxF8MdBwFUVePQH81h5vuL2</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
+    <string name="desc">Description</string>
     <string name="btn_login">Login</string>
     <string name="already_registered">Already registered! Login Me.</string>
     <string name="sign_up_now">Not a member? Sign up now.</string>
