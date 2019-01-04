@@ -275,7 +275,7 @@ public class HomeActivity extends BaseActivity {
                     user.setUser_id((String) message.get("user_id"));
                     user.setName((String) message.get("name"));
                     user.setEmail((String) message.get("email"));
-                    if(!isAdmin){
+                    if(!user.getUser_id().equalsIgnoreCase(getString(R.string.uid))){
                         spinnerListString.add(user);
                     }
 
