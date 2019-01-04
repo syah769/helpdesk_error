@@ -449,40 +449,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-sw600dp-v13_values-sw600dp-v13.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\58e9f702bf05ed75b0a73328f81f8826\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\b97cd53dd284db3e9b187d895b26afa3\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,115,185,256,328,386,444,553,617,680",
-                        "endLines": "2,3,4,5,6,7,9,10,11,15",
-                        "endColumns": "59,69,70,71,57,57,10,63,62,10",
-                        "endOffsets": "110,180,251,323,381,439,548,612,675,847"
-                    },
-                    "to": {
-                        "startLines": "10,11,12,13,14,15,16,18,19,20",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "611,671,741,812,884,942,1000,1109,1173,1236",
-                        "endLines": "10,11,12,13,14,15,17,18,19,23",
-                        "endColumns": "59,69,70,71,57,57,10,63,62,10",
-                        "endOffsets": "666,736,807,879,937,995,1104,1168,1231,1403"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-bs_values-bs.arsc.flat",
             "map": [
                 {
@@ -568,6 +534,40 @@
                         "startOffsets": "5715",
                         "endColumns": "100",
                         "endOffsets": "5811"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-sw600dp-v13_values-sw600dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\58e9f702bf05ed75b0a73328f81f8826\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\b97cd53dd284db3e9b187d895b26afa3\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,115,185,256,328,386,444,553,617,680",
+                        "endLines": "2,3,4,5,6,7,9,10,11,15",
+                        "endColumns": "59,69,70,71,57,57,10,63,62,10",
+                        "endOffsets": "110,180,251,323,381,439,548,612,675,847"
+                    },
+                    "to": {
+                        "startLines": "10,11,12,13,14,15,16,18,19,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "611,671,741,812,884,942,1000,1109,1173,1236",
+                        "endLines": "10,11,12,13,14,15,17,18,19,23",
+                        "endColumns": "59,69,70,71,57,57,10,63,62,10",
+                        "endOffsets": "666,736,807,879,937,995,1104,1168,1231,1403"
                     }
                 }
             ]
@@ -1656,22 +1656,6 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-v25_values-v25.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\58e9f702bf05ed75b0a73328f81f8826\\res\\values-v25\\values-v25.xml",
-                    "from": {
-                        "startLines": "2,3,4,6",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,126,209,308",
-                        "endLines": "2,3,5,7",
-                        "endColumns": "70,82,12,12",
-                        "endOffsets": "121,204,303,414"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-sr_values-sr.arsc.flat",
             "map": [
                 {
@@ -1776,6 +1760,22 @@
                         "startOffsets": "7653,7761,7949,8077,8189,8402,8531,8673,8993,9201,9310,9501,9630,9838,10010,10108,10203",
                         "endColumns": "107,187,127,111,212,128,141,130,207,108,190,128,207,171,97,94,108",
                         "endOffsets": "7756,7944,8072,8184,8397,8526,8668,8799,9196,9305,9496,9625,9833,10005,10103,10198,10307"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-v25_values-v25.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\58e9f702bf05ed75b0a73328f81f8826\\res\\values-v25\\values-v25.xml",
+                    "from": {
+                        "startLines": "2,3,4,6",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,126,209,308",
+                        "endLines": "2,3,5,7",
+                        "endColumns": "70,82,12,12",
+                        "endOffsets": "121,204,303,414"
                     }
                 }
             ]
@@ -1922,6 +1922,22 @@
             ]
         },
         {
+            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-ms-rMY_values-ms-rMY.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\android.joda-2.9.9.1.aar\\42f706fbc8ebaf01bc7849cca02066ed\\res\\values-ms-rMY\\values-ms-rMY.xml",
+                    "from": {
+                        "startLines": "2,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62,66,70,74,78,79,80",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,357,616,880,1143,1403,1671,1944,2216,2458,2706,2952,3197,3448,3706,3962,4214,4475,4742,5007,5137,5267",
+                        "endLines": "5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,77,78,79,80",
+                        "endColumns": "14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,129,129,150",
+                        "endOffsets": "352,611,875,1138,1398,1666,1939,2211,2453,2701,2947,3192,3443,3701,3957,4209,4470,4737,5002,5132,5262,5413"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-hu_values-hu.arsc.flat",
             "map": [
                 {
@@ -2026,22 +2042,6 @@
                         "startOffsets": "7698,7811,8027,8167,8278,8505,8645,8797,9172,9401,9511,9727,9866,10097,10299,10400,10498",
                         "endColumns": "112,215,139,110,226,139,151,138,228,109,215,138,230,201,100,97,116",
                         "endOffsets": "7806,8022,8162,8273,8500,8640,8792,8931,9396,9506,9722,9861,10092,10294,10395,10493,10610"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\res\\merged\\debug\\values-ms-rMY_values-ms-rMY.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\nur.diyana\\.gradle\\caches\\transforms-1\\files-1.1\\android.joda-2.9.9.1.aar\\42f706fbc8ebaf01bc7849cca02066ed\\res\\values-ms-rMY\\values-ms-rMY.xml",
-                    "from": {
-                        "startLines": "2,6,10,14,18,22,26,30,34,38,42,46,50,54,58,62,66,70,74,78,79,80",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,357,616,880,1143,1403,1671,1944,2216,2458,2706,2952,3197,3448,3706,3962,4214,4475,4742,5007,5137,5267",
-                        "endLines": "5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,77,78,79,80",
-                        "endColumns": "14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,129,129,150",
-                        "endOffsets": "352,611,875,1138,1398,1666,1939,2211,2453,2701,2947,3192,3443,3701,3957,4209,4470,4737,5002,5132,5262,5413"
                     }
                 }
             ]
