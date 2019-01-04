@@ -1,13 +1,10 @@
 package com.example.syahril.yourtaskapp;
 
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -73,9 +70,9 @@ public class HomeActivity extends BaseActivity {
 
     private String title;
     private String note;
+    private String desc;
     private String staff;
     private String post_key;
-    private String parentNode;
 
     private List<User> spinnerListString ;
     private ArrayAdapter<User> spinnerListAdapter;
@@ -165,6 +162,7 @@ public class HomeActivity extends BaseActivity {
                                 data.setNote((String) message.get("note"));
                                 data.setStaff((String) message.get("staff"));
                                 data.setTitle((String) message.get("title"));
+                                data.setDesc((String) message.get("desc"));
                                 int status = 0;
                                 if (message.get("status") != null) {
                                     long statusLong = (long) message.get("status");
@@ -186,11 +184,12 @@ public class HomeActivity extends BaseActivity {
                                                 recyclerViewAdapter = new RecyclerViewAdapter(mDatabase, getApplicationContext(), myObject, new ClickListener() {
                                                     @Override
                                                     public void btnClick(Data data, int position) {
-                                                        parentNode = data.getParentNode();
                                                         post_key = data.getId();
                                                         title = data.getTitle();
                                                         note = data.getNote();
+                                                        desc=data.getDesc();
                                                         staff = data.getStaff();
+
                                                         setupDialogUpdate();
                                                     }
                                                 }, new CheckBoxListener() {
@@ -370,6 +369,7 @@ public class HomeActivity extends BaseActivity {
                                 data.setNote((String) message.get("note"));
                                 data.setStaff((String) message.get("staff"));
                                 data.setTitle((String) message.get("title"));
+                                data.setDesc((String) message.get("desc"));
                                 int status = 0;
                                 if (message.get("status") != null) {
                                     long statusLong = (long) message.get("status");
@@ -400,10 +400,10 @@ public class HomeActivity extends BaseActivity {
                                             recyclerViewAdapter = new RecyclerViewAdapter(mDatabase, getApplicationContext(), myObject, new ClickListener() {
                                                 @Override
                                                 public void btnClick(Data data, int position) {
-                                                    parentNode = data.getParentNode();
                                                     post_key = data.getId();
                                                     title = data.getTitle();
                                                     note = data.getNote();
+                                                    desc=data.getDesc();
                                                     staff = data.getStaff();
                                                     setupDialogUpdate();
                                                 }
@@ -525,7 +525,7 @@ public class HomeActivity extends BaseActivity {
         titleupdate.setText(title);
         titleupdate.setSelection(title.length());
 
-
+        etDescription.setText(desc);
         noteupdate.setText(note);
         noteupdate.setSelection(note.length());
 
@@ -602,6 +602,7 @@ public class HomeActivity extends BaseActivity {
         final EditText note = alertLayout.findViewById(R.id.edit_note);
         final Spinner staff = alertLayout.findViewById(R.id.spinner);
         final EditText etDesc=alertLayout.findViewById(R.id.edit_desc);
+        etDesc.setText(desc);
         spinnerList = alertLayout.findViewById(R.id.spinner);
         //Spinner
 
