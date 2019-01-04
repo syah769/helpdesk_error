@@ -73,6 +73,7 @@ public class HomeActivity extends BaseActivity {
     private String note;
     private String desc;
     private String staff;
+    private int statusTask;
     private String post_key;
 
     private List<User> spinnerListString ;
@@ -195,6 +196,7 @@ public class HomeActivity extends BaseActivity {
                                                         note = data.getNote();
                                                         desc=data.getDesc();
                                                         staff = data.getStaff();
+                                                        statusTask=data.getStatus();
 
                                                         setupDialogUpdate();
                                                     }
@@ -574,7 +576,7 @@ public class HomeActivity extends BaseActivity {
                 staff = spinnerupdate.getSelectedItem().toString().trim();
                 String mDate = DateFormat.getDateInstance().format(new Date());
 
-                Data data = new Data(title, note, staff, mDate, post_key, 0,etDescription.getText().toString());
+                Data data = new Data(title, note, staff, mDate, post_key, statusTask,etDescription.getText().toString());
                 mDatabase.child(post_key).setValue(data, new DatabaseReference.CompletionListener() {
                     public void onComplete(DatabaseError error, DatabaseReference ref) {
 //                            System.out.println("Value was set. Error = "+error);
