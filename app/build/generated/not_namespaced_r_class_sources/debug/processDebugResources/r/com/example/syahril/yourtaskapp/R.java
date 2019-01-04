@@ -5459,21 +5459,22 @@ public final class R {
     public static final int transition_transform=0x7f0800e7;
     public static final int tv_body=0x7f0800e8;
     public static final int tv_title=0x7f0800e9;
-    public static final int tx_desc=0x7f0800ea;
-    public static final int tx_email=0x7f0800eb;
-    public static final int tx_note=0x7f0800ec;
-    public static final int tx_password=0x7f0800ed;
-    public static final int tx_title=0x7f0800ee;
-    public static final int uniform=0x7f0800ef;
-    public static final int unlabeled=0x7f0800f0;
-    public static final int up=0x7f0800f1;
-    public static final int useLogo=0x7f0800f2;
-    public static final int view_offset_helper=0x7f0800f3;
-    public static final int visible=0x7f0800f4;
-    public static final int wide=0x7f0800f5;
-    public static final int withText=0x7f0800f6;
-    public static final int wrap=0x7f0800f7;
-    public static final int wrap_content=0x7f0800f8;
+    public static final int tv_welcome=0x7f0800ea;
+    public static final int tx_desc=0x7f0800eb;
+    public static final int tx_email=0x7f0800ec;
+    public static final int tx_note=0x7f0800ed;
+    public static final int tx_password=0x7f0800ee;
+    public static final int tx_title=0x7f0800ef;
+    public static final int uniform=0x7f0800f0;
+    public static final int unlabeled=0x7f0800f1;
+    public static final int up=0x7f0800f2;
+    public static final int useLogo=0x7f0800f3;
+    public static final int view_offset_helper=0x7f0800f4;
+    public static final int visible=0x7f0800f5;
+    public static final int wide=0x7f0800f6;
+    public static final int withText=0x7f0800f7;
+    public static final int wrap=0x7f0800f8;
+    public static final int wrap_content=0x7f0800f9;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f090000;

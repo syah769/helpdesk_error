@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -64,7 +65,7 @@ public class HomeActivity extends BaseActivity {
     private EditText noteupdate;
     private Spinner spinnerList;
     private Spinner spinnerupdate;
-    private LinearLayout root;
+    private RelativeLayout root;
 
     //variable
 
@@ -84,6 +85,7 @@ public class HomeActivity extends BaseActivity {
     private TextInputLayout txTitle;
     private TextInputLayout txNote;
     private TextView spinnerText;
+    private TextView tvWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,10 @@ public class HomeActivity extends BaseActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         String uId = mUser.getUid();
+
+        tvWelcome=findViewById(R.id.tv_welcome);
+        String name=mAuth.getCurrentUser().getEmail().substring(0, mAuth.getCurrentUser().getEmail().indexOf("@"));
+        tvWelcome.setText("Welcome " +name +" !");
         //get all user uid
 
 

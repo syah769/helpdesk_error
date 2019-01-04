@@ -1313,6 +1313,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tv_body
 id tv_title
+id tv_welcome
 id tx_desc
 id tx_email
 id tx_note

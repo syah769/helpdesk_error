@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/root"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HomeActivity">
 
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar_home" />
+    <include
+        android:id="@+id/toolbar_home"
+        layout="@layout/toolbar" />
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_home">
 
         <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
             android:id="@+id/recycler"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_btn"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
-            app:fabSize="normal"
-            android:id="@+id/fab_btn"
-            android:src="@drawable/fab"
             android:backgroundTint="#FFB41DFF"
-            android:layout_height="wrap_content" />
+            android:src="@drawable/fab"
+            app:fabSize="normal" />
 
 
     </android.support.design.widget.CoordinatorLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
+        <TextView
+            android:id="@+id/tv_welcome"
+            android:background="@color/disabled"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:text="Welcome ...." />
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
