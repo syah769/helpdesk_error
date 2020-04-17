@@ -191,8 +191,11 @@
     <color name="cardview_shadow_end_color">#03000000</color>
     <color name="cardview_shadow_start_color">#37000000</color>
     <color name="colorAccent">#690D9E</color>
+    <color name="colorNew">#32CD32</color>
+    <color name="colorPending">#FF0000</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorSuccess"> #006400</color>
     <color name="common_google_signin_btn_text_dark_default">@android:color/white</color>
     <color name="common_google_signin_btn_text_dark_disabled">#1F000000</color>
     <color name="common_google_signin_btn_text_dark_focused">@android:color/black</color>
@@ -216,6 +219,7 @@
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
+    <color name="disabled">#DCDCDC</color>
     <color name="error_color_material_dark">#ff7043</color>
     <color name="error_color_material_light">#ff5722</color>
     <color name="foreground_material_dark">@android:color/white</color>
@@ -2393,9 +2397,17 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="data_message">message</string>
+    <string name="data_message_id">message_id</string>
+    <string name="data_title">title</string>
+    <string name="data_type">data_type</string>
+    <string name="default_notification_channel_id" translatable="false">default_notification_channel_id</string>
     <string name="default_web_client_id" translatable="false">793846612315-2p2s97bgpp12j2j2qv4o7p4kgf1jc9uu.apps.googleusercontent.com</string>
+    <string name="desc">Description</string>
+    <string name="direct_message">direct_message</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">android.support.design.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">android.support.design.transformation.FabTransformationSheetBehavior</string>
+    <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
     <string name="firebase_database_url" translatable="false">https://your-task-app-cd90e.firebaseio.com</string>
     <string name="gcm_defaultSenderId" translatable="false">793846612315</string>
     <string name="google_api_key" translatable="false">AIzaSyBw6vA8lODLjvaUcNzBLV4P4zgGvAtNNRQ</string>
@@ -2425,6 +2437,7 @@
     <string name="sign_up_now">Not a member? Sign up now.</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="title">Title</string>
+    <string name="uid">gi1WxFxF8MdBwFUVePQH81h5vuL2</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

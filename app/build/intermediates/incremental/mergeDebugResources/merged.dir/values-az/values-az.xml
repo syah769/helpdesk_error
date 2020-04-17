@@ -121,6 +121,7 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Telefonda açın"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Daxil olun"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Google ilə daxil olun"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Müxtəlif"</string>
     <string msgid="9093949757757445117" name="joda_time_android_preposition_for_date">"<ns1:g id="DATE">%s</ns1:g> tarixində"</string>
     <string msgid="5506831244263083793" name="joda_time_android_preposition_for_time">"saat <ns1:g id="TIME">%s</ns1:g>"</string>
     <string msgid="1818557177829411417" name="joda_time_android_relative_time">"<ns1:g id="DATE">%1$s</ns1:g>, <ns1:g id="TIME">%2$s</ns1:g>"</string>

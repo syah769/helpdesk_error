@@ -1,7 +1,7 @@
-#Wed Jan 02 11:48:26 SGT 2019
-base.0=C\:\\Users\\nur.diyana\\Desktop\\study\\helpdeskfirebaseerror\\helpdesk_error\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
+#Fri Jan 04 15:07:13 SGT 2019
+base.0=C\:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.1=classes.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=C\:\\Users\\nur.diyana\\Desktop\\study\\helpdeskfirebaseerror\\helpdesk_error\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+base.1=C\:\\Users\\nur.diyana\\Desktop\\study\\New folder (2)\\helpdesk_error\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1

@@ -121,6 +121,7 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"在手机上打开"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"登录"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"使用 Google 帐号登录"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"其他"</string>
     <string name="joda_time_android_date_time">%1$s %2$s</string>
     <string msgid="9093949757757445117" name="joda_time_android_preposition_for_date">"日期：<ns1:g id="DATE">%s</ns1:g>"</string>
     <string msgid="5506831244263083793" name="joda_time_android_preposition_for_time">"时间：<ns1:g id="TIME">%s</ns1:g>"</string>

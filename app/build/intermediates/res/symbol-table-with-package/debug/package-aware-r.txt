@@ -612,8 +612,11 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color colorAccent
+color colorNew
+color colorPending
 color colorPrimary
 color colorPrimaryDark
+color colorSuccess
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -642,6 +645,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color disabled
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -1014,11 +1018,13 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable account_clock
 drawable avd_hide_password
 drawable avd_show_password
 drawable backdesign
 drawable btndesign
 drawable button_flat
+drawable check_circle
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -1057,6 +1063,7 @@ drawable logout
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable new_box
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1146,6 +1153,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
+id edit_desc
 id edit_note
 id edit_note_update
 id edit_query
@@ -1178,6 +1186,7 @@ id icon_group
 id icon_only
 id ifRoom
 id image
+id img_status
 id info
 id invisible
 id italic
@@ -1304,6 +1313,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id tv_body
 id tv_title
+id tx_desc
 id tx_email
 id tx_note
 id tx_password
@@ -1983,9 +1993,17 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string data_message
+string data_message_id
+string data_title
+string data_type
+string default_notification_channel_id
 string default_web_client_id
+string desc
+string direct_message
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fcm_fallback_notification_channel_label
 string firebase_database_url
 string gcm_defaultSenderId
 string google_api_key
@@ -2015,6 +2033,7 @@ string show_success
 string sign_up_now
 string status_bar_notification_info_overflow
 string title
+string uid
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

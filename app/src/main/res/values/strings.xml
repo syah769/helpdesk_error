@@ -3,8 +3,10 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="btn_register">Register</string>
+    <string name="uid">gi1WxFxF8MdBwFUVePQH81h5vuL2</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
+    <string name="desc">Description</string>
     <string name="btn_login">Login</string>
     <string name="already_registered">Already registered! Login Me.</string>
     <string name="sign_up_now">Not a member? Sign up now.</string>
@@ -12,4 +14,11 @@
     <string name="show_pending">Show Pending Ticket</string>
     <string name="show_new">Show New Ticket</string>
     <string name="show_success">Show Success Ticket</string>
+
+    <string name="default_notification_channel_id" translatable="false">default_notification_channel_id</string>
+    <string name="data_type">data_type</string>
+    <string name="direct_message">direct_message</string>
+    <string name="data_message">message</string>
+    <string name="data_title">title</string>
+    <string name="data_message_id">message_id</string>
 </resources>

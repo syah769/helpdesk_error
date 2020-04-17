@@ -121,6 +121,7 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Auf Smartphone öffnen"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Anmelden"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Über Google anmelden"</string>
+    <string msgid="4133737464567140336" name="fcm_fallback_notification_channel_label">"Sonstiges"</string>
     <string name="joda_time_android_date_time">%1$s, %2$s</string>
     <string msgid="9093949757757445117" name="joda_time_android_preposition_for_date">"am <ns1:g id="DATE">%s</ns1:g>"</string>
     <string msgid="5506831244263083793" name="joda_time_android_preposition_for_time">"um <ns1:g id="TIME">%s</ns1:g>"</string>
